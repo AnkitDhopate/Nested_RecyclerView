@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         marathi.add(new ItemModel(R.drawable.natsamrat, "natsamrat"));
         masterModelList.add(new MasterModel("Marathi Movies", marathi));
 
+        masterModelList.add(new MasterModel(R.drawable.banner_1));
+
         telugu.add(new ItemModel(R.drawable.awe, "awe"));
         telugu.add(new ItemModel(R.drawable.it, "it"));
         telugu.add(new ItemModel(R.drawable.nikkevarru, "nikkevarru"));
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         spanish.add(new ItemModel(R.drawable.labyrinth, "labyrinth"));
         spanish.add(new ItemModel(R.drawable.extraction, "extraction"));
         masterModelList.add(new MasterModel("Spanish Movies", spanish));
+
+        masterModelList.add(new MasterModel(R.drawable.banner_2));
 
         masterAdapter = new MasterAdapter(masterModelList, this);
         master_recycler_view.setAdapter(masterAdapter);
