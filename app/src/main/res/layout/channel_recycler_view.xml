@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/channel_id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FF0000"
+        android:fontFamily="@font/aladin"
+        android:gravity="center_vertical"
+        android:text="Channels"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:ignore="RtlCompat" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/channels_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

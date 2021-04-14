@@ -22,12 +22,13 @@
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forest gump"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/mouse_memoirs"
+            android:text="Forest gump"
             android:textColor="#FF0000"
-            android:layout_marginTop="5dp"/>
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

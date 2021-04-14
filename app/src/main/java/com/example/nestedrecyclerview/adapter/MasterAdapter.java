@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nestedrecyclerview.R;
+import com.example.nestedrecyclerview.model.ChannelModel;
 import com.example.nestedrecyclerview.model.ItemModel;
 import com.example.nestedrecyclerview.model.MasterModel;
 
@@ -36,6 +37,8 @@ public class MasterAdapter extends RecyclerView.Adapter
                 return MasterModel.getITEM();
             case 1 :
                 return MasterModel.getBANNER();
+            case 2:
+                return MasterModel.getCHANNEL();
             default:
                 return -1 ;
         }
@@ -52,6 +55,9 @@ public class MasterAdapter extends RecyclerView.Adapter
             case 1 :
                 View banner_view = LayoutInflater.from(context).inflate(R.layout.banner_layout, parent, false);
                 return new BannerViewHolder(banner_view);
+            case 2 :
+                View channel_view = LayoutInflater.from(context).inflate(R.layout.channel_recycler_view, parent, false);
+                return new ChannelViewHolder(channel_view);
             default:
                 return null ;
         }
@@ -67,6 +73,10 @@ public class MasterAdapter extends RecyclerView.Adapter
                 break;
             case 1:
                 ((BannerViewHolder)holder).banner_img.setImageResource(masterModelList.get(position).getBanner_img());
+                break;
+            case 2:
+                ((ChannelViewHolder)holder).channel_id.setText(masterModelList.get(position).getChannel_category_name());
+                ((ChannelViewHolder)holder).setChannelRecyclerView(masterModelList.get(position).getChannelModelList(), context);
                 break;
             default:
                 return;
@@ -84,6 +94,31 @@ public class MasterAdapter extends RecyclerView.Adapter
         public BannerViewHolder(@NonNull View itemView) {
             super(itemView);
             banner_img = itemView.findViewById(R.id.banner_img);
+        }
+    }
+
+    public class ChannelViewHolder extends RecyclerView.ViewHolder
+    {
+        private TextView channel_id ;
+        private RecyclerView channel_recycler_view ;
+
+        public ChannelViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            channel_id = itemView.findViewById(R.id.channel_id);
+            channel_recycler_view = itemView.findViewById(R.id.channels_recycler_view);
+        }
+
+        public void setChannelRecyclerView(ArrayList<ChannelModel> channelModelList, Context context)
+        {
+            RecyclerView channel_recycler_view = itemView.findViewById(R.id.channels_recycler_view);
+            channel_recycler_view.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            channel_recycler_view.setLayoutManager(linearLayoutManager);
+
+            ChannelAdapter channelAdapter = new ChannelAdapter(channelModelList, context);
+            channel_recycler_view.setAdapter(channelAdapter);
         }
     }
 
@@ -108,6 +143,15 @@ public class MasterAdapter extends RecyclerView.Adapter
 
             ItemsAdapter itemsAdapter = new ItemsAdapter(itemModelList, context);
             itemRecyclerView.setAdapter(itemsAdapter);
+        }
+
+        public void setChannelRecyclerView(ArrayList<ChannelModel> channelModelList, Context context)
+        {
+            RecyclerView channelRecyclerView = itemView.findViewById(R.id.items_recycler_view);
+            channelRecyclerView.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+            linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+            channelRecyclerView.setLayoutManager(linearLayoutManager);
         }
     }
 /*
